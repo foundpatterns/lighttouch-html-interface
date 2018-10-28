@@ -8,16 +8,12 @@ if not model then
   return { headers = {}, status = "400", body = err }
 end
 
-local html = ""
-for name, def in pairs(model.fields) do
-  html = html .. '<div><label for="' .. name .. '">' .. name .. '</label><input name="' .. name .. '" id="' .. name .. '"></div>'
-end
-
-html = '<html><header><title>New ' .. model_name .. '</title></header><body><form method="POST" action="/">' .. html .. "</form></body></html>"
-
 return {
   headers = {
     ["content-type"] = "text/html"
   },
-  body = html
+  body = render("model_form.html", {
+    model_name = model_name,
+    model = model
+  })
 }
