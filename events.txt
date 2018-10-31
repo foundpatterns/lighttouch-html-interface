@@ -1,1 +1,3 @@
 get_document_form
+request_document_html
+list_documents_html
