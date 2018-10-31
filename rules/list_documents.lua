@@ -7,5 +7,5 @@ and #request.path_segments == 1
 and request.path_segments[1]:match("^%a+$") -- TODO: make it a known type, not just any word
 and request.headers["accept"]:match("html")
 then
-    events[events_table[1]]:trigger(request)
+    events[events_table[1]]:trigger(events_parameters)
 end
