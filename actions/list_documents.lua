@@ -12,6 +12,8 @@ content.walk_documents(nil, function (file_uuid, header, body)
   end
 end)
 
+if #uuids == 0 then uuids = nil end
+
 return {
   headers = {
     ["content-type"] = "text/html",
