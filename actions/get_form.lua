@@ -1,6 +1,7 @@
 event: ["get_document_form"]
 priority: 1
 
+if request.forbidden then return end
 
 local model_name = request.path_segments[1]
 local model, err = content.get_model_definition(model_name)
