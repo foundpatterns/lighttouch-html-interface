@@ -1,5 +1,7 @@
 event: ["request_document_html"]
 priority: 1
+input_parameters: ["request"]
+
 
 -- GET /[type]/[uuid]
 local model_name, id = request.path_segments[1], request.path_segments[2]

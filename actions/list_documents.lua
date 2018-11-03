@@ -1,5 +1,7 @@
 event: ["list_documents_html"]
 priority: 1
+input_parameters: ["request"]
+
 
 -- GET /[type]
 local model_name = request.path_segments[1]
