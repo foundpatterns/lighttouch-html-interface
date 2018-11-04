@@ -8,7 +8,7 @@ local model_name = request.path_segments[1]
 
 local uuids = {}
 
-content.walk_documents(nil, function (file_uuid, header, body)
+content.walk_documents(nil, function (file_uuid, header, body, profile)
   if header.type == model_name then
 
     -- Filter the documents using the query params
@@ -19,7 +19,7 @@ content.walk_documents(nil, function (file_uuid, header, body)
       end
     end
 
-    table.insert(uuids, file_uuid)
+    table.insert(uuids, {file=file_uuid, profile=profile})
   end
 end)
 

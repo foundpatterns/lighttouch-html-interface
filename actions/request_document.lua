@@ -6,7 +6,7 @@ input_parameters: ["request"]
 -- GET /[type]/[uuid]
 local model_name, id = request.path_segments[1], request.path_segments[2]
 
-local fields, body = content.read_document(id)
+local fields, body, profile = content.read_document(id)
 if not fields then
   return {
     headers = { ["content-type"] = "application/json" },
@@ -27,6 +27,7 @@ return {
   body = render("show_document.html", {
     model = model_name,
     id = id,
+    profile = profile,
     fields = fields,
     body = body
   })
