@@ -14,9 +14,7 @@ if not fields then
   }
 end
 
-if fields.model ~= model_name
-and fields.type ~= model_name -- Compatibility
-then
+if fields.model ~= model_name then
   return {
     headers = { ["content-type"] = "application/json" },
     body = json.from_table({msg="Document is not of model " .. model_name})

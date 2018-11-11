@@ -12,7 +12,7 @@ local uuids = {}
 
 content.walk_documents(nil, function (file_uuid, header, body, profile)
 
-  if header.type == model_name
+  if header.model == model_name
   and header[base_model] == document_uuid
   then
     table.insert(uuids, file_uuid)

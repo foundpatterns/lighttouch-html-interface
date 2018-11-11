@@ -10,9 +10,7 @@ local uuids = {}
 
 content.walk_documents(nil, function (file_uuid, header, body, profile)
 
-  if header.model == model_name
-  or header.type == model_name -- Compatibility
-  then
+  if header.model == model_name then
 
     -- Further filter documents using the query params
     for k, v in pairs(request.query) do
