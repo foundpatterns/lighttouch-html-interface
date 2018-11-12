@@ -2,4 +2,5 @@ get_document_form
 request_document_html
 list_documents_html
 list_subdocuments_html
+witness_html
 http_auth
