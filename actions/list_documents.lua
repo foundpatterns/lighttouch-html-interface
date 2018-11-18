@@ -8,6 +8,24 @@ local model_name = request.path_segments[1]
 
 local uuids = {}
 
+-- Tantivy
+log.trace("Start tantivy search")
+local uuid_field = content.schema:get_field("uuid")
+local model_field = content.schema:get_field("model")
+
+local parser = tan.query_parser_for_index(content.index, {uuid_field, model_field})
+local coll = tan.top_collector_with_limit(10)
+local result = content.index:search(parser, model_name, coll)
+for i = 1, #result do
+  local doc = result[i]
+  table.insert(uuids, {
+    file = doc:get_first(uuid_field),
+    profile = "unknown_profile"
+  })
+end
+log.trace("End tantivy search")
+
+--[[
 content.walk_documents(nil, function (file_uuid, header, body, profile)
 
   if header.model == model_name then
@@ -23,6 +41,7 @@ content.walk_documents(nil, function (file_uuid, header, body, profile)
     table.insert(uuids, {file=file_uuid, profile=profile})
   end
 end)
+]]
 
 if #uuids == 0 then uuids = nil end
 
