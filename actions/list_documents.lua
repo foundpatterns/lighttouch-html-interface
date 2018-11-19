@@ -8,21 +8,22 @@ local model_name = request.path_segments[1]
 
 local documents = {}
 
--- Traverse the query manually because content.walk_documents
--- adds overhead by reading the files
+content.walk_documents('+model:"' .. model_name .. '"',
+  function (file_uuid, header, body, store)
+    -- Filter the documents using the query params
+    for k, v in pairs(request.query) do
+      if header[k] ~= v then
+        -- Don't add this document to the list
+        return
+      end
+    end
 
--- "model:" says to look specifically in the model field
--- + means it's required
--- model_name needs to be quoted because it can have hypens
-local result = content.query('+model:"' .. model_name .. '"')
-
-for i = 1, #result do
-  local doc = result[i]
-  table.insert(documents, {
-    file = doc:get_first(content.fields.uuid),
-    profile = doc:get_first(content.fields.store)
-  })
-end
+    table.insert(documents, {
+      file = file_uuid,
+      profile = store
+    })
+  end
+)
 
 -- TODO: Use the rest of the query or update the way it works
 -- Each query parameter specifies what a document field must have
