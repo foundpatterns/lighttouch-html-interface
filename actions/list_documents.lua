@@ -6,13 +6,11 @@ input_parameters: ["request"]
 -- GET /[type]
 local model_name = request.path_segments[1]
 
-local uuids = {}
+local documents = {}
 
-content.walk_documents(nil, function (file_uuid, header, body, profile)
-
-  if header.model == model_name then
-
-    -- Further filter documents using the query params
+content.walk_documents('+model:"' .. model_name .. '"',
+  function (file_uuid, header, body, store)
+    -- Filter the documents using the query params
     for k, v in pairs(request.query) do
       if header[k] ~= v then
         -- Don't add this document to the list
@@ -20,15 +18,21 @@ content.walk_documents(nil, function (file_uuid, header, body, profile)
       end
     end
 
-    table.insert(uuids, {file=file_uuid, profile=profile})
+    table.insert(documents, {
+      file = file_uuid,
+      profile = store
+    })
   end
-end)
+)
 
-if #uuids == 0 then uuids = nil end
+-- TODO: Use the rest of the query or update the way it works
+-- Each query parameter specifies what a document field must have
+
+if #documents == 0 then documents = nil end
 
 return {
   headers = {
     ["content-type"] = "text/html",
   },
-  body = render("list_documents.html", {model=model_name, documents=uuids})
+  body = render("list_documents.html", {model=model_name, documents=documents})
 }
