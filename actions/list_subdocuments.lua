@@ -8,22 +8,29 @@ local base_model = request.path_segments[1]
 local document_uuid = request.path_segments[2]
 local model_name = request.path_segments[3]
 
-local uuids = {}
+local documents = {}
 
 local query = '+model:"' .. model_name .. '"'
-content.walk_documents(query, function (doc_id, fields, body)
+content.walk_documents(query, function (doc_id, fields, body, store)
   if fields[base_model] == document_uuid then
-    table.insert(uuids, doc_id)
+    table.insert(documents, {
+      name = fields.name or fields.title,
+      uuid = doc_id,
+      store = store
+    })
   end
 end)
 
 
-
-if #uuids == 0 then uuids = nil end
+if #documents == 0 then documents = nil end
 
 return {
   headers = {
     ["content-type"] = "text/html",
   },
-  body = render("list_subdocuments.html", {base_uuid=document_uuid, model=model_name, documents=uuids})
+  body = render("list_documents.html", {
+    title = model_name:capitalize() .. " for " .. document_uuid,
+    model = model_name,
+    documents = documents
+  })
 }

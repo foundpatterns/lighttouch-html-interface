@@ -9,18 +9,19 @@ local model_name = request.path_segments[1]
 local documents = {}
 
 content.walk_documents('+model:"' .. model_name .. '"',
-  function (file_uuid, header, body, store)
+  function (file_uuid, fields, body, store)
     -- Filter the documents using the query params
     for k, v in pairs(request.query) do
-      if header[k] ~= v then
+      if fields[k] ~= v then
         -- Don't add this document to the list
         return
       end
     end
 
     table.insert(documents, {
-      file = file_uuid,
-      profile = store
+      name = fields.name or fields.title,
+      uuid = file_uuid,
+      store = store
     })
   end
 )
@@ -34,5 +35,9 @@ return {
   headers = {
     ["content-type"] = "text/html",
   },
-  body = render("list_documents.html", {model=model_name, documents=documents})
+  body = render("list_documents.html", {
+    title = model_name:capitalize(),
+    model = model_name,
+    documents = documents
+  })
 }
