@@ -21,6 +21,26 @@ if fields.model ~= model_name then
   }
 end
 
+local subdocuments = {}
+
+content.walk_documents("*", function (doc_id, fields, body, store)
+  if fields[model_name] == id then
+
+    local docs = subdocuments[fields.model]
+    if not docs then
+      docs = {}
+      subdocuments[fields.model] = docs
+    end
+
+    table.insert(docs, {
+      name = fields.name or fields.title,
+      uuid = doc_id,
+      store = store
+    })
+  end
+end)
+
+if count_pairs(subdocuments) == 0 then subdocuments = nil end
 
 return {
   headers = { ["content-type"] = "text/html" },
@@ -29,6 +49,7 @@ return {
     id = id,
     store = store,
     fields = fields,
-    body = body
+    body = body,
+    subdocuments = subdocuments,
   })
 }
