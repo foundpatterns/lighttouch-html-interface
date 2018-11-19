@@ -10,14 +10,14 @@ local model_name = request.path_segments[3]
 
 local uuids = {}
 
-content.walk_documents(nil, function (file_uuid, header, body, profile)
-
-  if header.model == model_name
-  and header[base_model] == document_uuid
-  then
-    table.insert(uuids, file_uuid)
+local query = '+model:"' .. model_name .. '"'
+content.walk_documents(query, function (doc_id, fields, body)
+  if fields[base_model] == document_uuid then
+    table.insert(uuids, doc_id)
   end
 end)
+
+
 
 if #uuids == 0 then uuids = nil end
 

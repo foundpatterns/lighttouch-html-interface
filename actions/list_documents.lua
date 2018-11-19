@@ -8,10 +8,13 @@ local model_name = request.path_segments[1]
 
 local documents = {}
 
+-- Traverse the query manually because content.walk_documents
+-- adds overhead by reading the files
+
 -- "model:" says to look specifically in the model field
 -- + means it's required
--- model_name is a single word so there's no need to treat it specially
-local result = content.query("+model:" .. model_name)
+-- model_name needs to be quoted because it can have hypens
+local result = content.query('+model:"' .. model_name .. '"')
 
 for i = 1, #result do
   local doc = result[i]
