@@ -23,7 +23,7 @@ end
 
 local subdocuments = {}
 
-content.walk_documents("*", function (doc_id, fields, body, store)
+content.walk_documents(nil, function (doc_id, fields, body, store)
   if fields[model_name] == id then
 
     local docs = subdocuments[fields.model]

@@ -10,8 +10,8 @@ local model_name = request.path_segments[3]
 
 local documents = {}
 
-local query = '+model:"' .. model_name .. '"'
-content.walk_documents(query, function (doc_id, fields, body, store)
+content.walk_documents(nil, function (doc_id, fields, body, store)
+  if fields.model ~= model_name then return end
   if fields[base_model] == document_uuid then
     table.insert(documents, {
       name = fields.name or fields.title,

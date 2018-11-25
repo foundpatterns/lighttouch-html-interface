@@ -8,8 +8,10 @@ local model_name = request.path_segments[1]
 
 local documents = {}
 
-content.walk_documents('+model:"' .. model_name .. '"',
+content.walk_documents(nil,
   function (file_uuid, fields, body, store)
+    if fields.model ~= model_name then return end
+
     -- Filter the documents using the query params
     for k, v in pairs(request.query) do
       if fields[k] ~= v then
