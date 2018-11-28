@@ -38,7 +38,8 @@ return {
     ["content-type"] = "text/html",
   },
   body = render("list_documents.html", {
-    title = model_name:capitalize(),
+    SITENAME = torchbear.settings.sitename,
+    TITLE = model_name:capitalize(),
     model = model_name,
     documents = documents
   })
