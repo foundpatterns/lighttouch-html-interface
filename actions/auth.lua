@@ -16,7 +16,7 @@ request.forbidden = true
 return {
   status = 401,
   headers = {
-    ["WWW-Authenticate"] = 'Basic realm="lighttouch ' .. auth_tokens.realm .. '"'
+    ["WWW-Authenticate"] = 'Basic realm="' .. auth_tokens.realm .. '"'
   },
   body = ""
 }

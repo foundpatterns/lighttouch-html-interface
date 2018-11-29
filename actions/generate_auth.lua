@@ -14,16 +14,23 @@ local function generate (length)
   return str
 end
 
-local user = generate()
-local pwd = generate()
+local user = torchbear.settings.user
+local pwd = torchbear.settings.password
+
+if not user or not pwd then
+  log.warn("No user or password specified in settings.")
+
+  user = generate()
+  pwd = generate()
+
+  log.info("Default credentials:")
+  log.info("\tuser: " .. user)
+  log.info("\tpassword: " .. pwd)
+end
 
 _G.auth_tokens = {
-  realm = generate(10),
+  realm = torchbear.settings.sitename or ("Lighttouch App " .. generate()),
   user = user,
   pwd = pwd,
   cred = to_base64(user .. ":" .. pwd)
 }
-
-log.info("Session authentication:")
-log.info("\tuser: " .. user)
-log.info("\tpassword: " .. pwd)
