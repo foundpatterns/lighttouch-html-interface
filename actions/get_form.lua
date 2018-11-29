@@ -5,10 +5,7 @@ input_parameters: ["request"]
 if request.forbidden then return end
 
 local model_name = request.path_segments[1]
-local model, err = content.get_model_definition(model_name)
-if not model then
-  return { headers = {}, status = "400", body = err }
-end
+local model = models[model_name]
 
 return {
   headers = {
