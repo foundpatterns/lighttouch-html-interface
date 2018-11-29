@@ -1,5 +1,6 @@
 get_document_form
 request_document_html
+request_document_edit_form
 list_documents_html
 list_subdocuments_html
 witness_html
