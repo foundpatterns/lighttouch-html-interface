@@ -20,6 +20,7 @@ return {
 
     id = id,
     fields = fields,
-    body = body,
+    body = body, 
+    store = store,   
   })
 }
