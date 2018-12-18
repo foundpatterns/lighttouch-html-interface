@@ -1,6 +1,6 @@
-event: ["request_document_edit_form"]
-priority: 1
-input_parameters: ["request"]
+event = ["request_document_edit_form"]
+priority = 1
+input_parameters = ["request"]
 
 if request.forbidden then return end
 
@@ -20,7 +20,7 @@ return {
 
     id = id,
     fields = fields,
-    body = body, 
-    store = store,   
+    body = body,
+    store = store,
   })
 }

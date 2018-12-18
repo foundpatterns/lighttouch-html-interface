@@ -1,6 +1,6 @@
-priority: 2
-input_parameter: "request"
-events_table: ["get_document_form", "http_auth"]
+priority = 2
+input_parameter = "request"
+events_table = ["get_document_form", "http_auth"]
 
 request.method == "GET"
 and #request.path_segments == 2

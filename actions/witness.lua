@@ -1,6 +1,6 @@
-event: ["witness_html"]
-priority: 50
-input_parameters: ["request"]
+event = ["witness_html"]
+priority = 50
+input_parameters = ["request"]
 
 -- https://tools.ietf.org/html/rfc7617
 

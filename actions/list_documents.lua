@@ -1,6 +1,6 @@
-event: ["list_documents_html"]
-priority: 1
-input_parameters: ["request"]
+event = ["list_documents_html"]
+priority = 1
+input_parameters = ["request"]
 
 
 -- GET /[type]

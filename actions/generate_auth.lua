@@ -1,6 +1,6 @@
-event: ["lighttouch_loaded"]
-priority: 50
-input_parameters: []
+event = ["lighttouch_loaded"]
+priority = 50
+input_parameters = []
 
 -- https://tools.ietf.org/html/rfc7617
 

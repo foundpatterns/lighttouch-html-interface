@@ -1,6 +1,6 @@
-event: ["get_document_form"]
-priority: 1
-input_parameters: ["request"]
+event = ["get_document_form"]
+priority = 1
+input_parameters = ["request"]
 
 if request.forbidden then return end
 

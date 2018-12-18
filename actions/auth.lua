@@ -1,6 +1,6 @@
-event: ["http_auth"]
-priority: 50
-input_parameters: ["request"]
+event = ["http_auth"]
+priority = 50
+input_parameters = ["request"]
 
 -- https://tools.ietf.org/html/rfc7617
 
