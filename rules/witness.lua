@@ -1,11 +1,11 @@
-priority: 2
-input_parameter: "request"
-events_table: ["witness_html"]
+priority = 2
+input_parameter = "request"
+events_table = ["witness_html"]
 
 request.method == "GET"
-and 
+and
 #request.path_segments == 0
-and 
+and
 request.query.witness
-and 
+and
 uuid.check(request.query.witness)

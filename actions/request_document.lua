@@ -1,6 +1,6 @@
-event: ["request_document_html"]
-priority: 1
-input_parameters: ["request"]
+event = ["request_document_html"]
+priority = 1
+input_parameters = ["request"]
 
 
 -- GET /[type]/[uuid]
