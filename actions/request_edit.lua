@@ -12,7 +12,7 @@ return {
   headers = {
     ["content-type"] = "text/html"
   },
-  body = render("model_form.html", {
+  body = render(torchbear.settings.theme .. "/templates/model_form.html", {
     SITENAME = torchbear.settings.sitename,
     TITLE = "Edit " .. model_name:capitalize() .. " " .. id,
     model_name = model_name,
