@@ -6,7 +6,7 @@ input_parameters = ["request"]
 -- GET /[type]/[uuid]
 local model_name, id = request.path_segments[1], request.path_segments[2]
 
-local fields, body, store = content.read_document(id)
+local fields, body, store = contentdb.read_document(id)
 if not fields then
   return {
     headers = { ["content-type"] = "application/json" },
@@ -23,7 +23,7 @@ end
 
 local subdocuments = {}
 
-content.walk_documents(nil, function (doc_id, fields, body, store)
+contentdb.walk_documents(nil, function (doc_id, fields, body, store)
   if fields[model_name] == id then
 
     local docs = subdocuments[fields.model]
