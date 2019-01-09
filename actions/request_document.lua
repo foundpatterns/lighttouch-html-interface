@@ -44,7 +44,7 @@ if count_pairs(subdocuments) == 0 then subdocuments = nil end
 
 return {
   headers = { ["content-type"] = "text/html" },
-  body = render(torchbear.settings.theme .. "/templates/show_document.html", {
+  body = render(torchbear.settings.theme .. "/chunks/show_document.html", {
     SITENAME = torchbear.settings.sitename,
     TITLE = model_name:capitalize() .. " " .. id,
     model = model_name,
