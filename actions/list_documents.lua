@@ -37,7 +37,7 @@ return {
   headers = {
     ["content-type"] = "text/html",
   },
-  body = render("list_documents.html", {
+  body = render(torchbear.settings.theme .. "/chunks/list_documents.html", {
     SITENAME = torchbear.settings.sitename,
     TITLE = model_name:capitalize(),
     model = model_name,
