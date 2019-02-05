@@ -6,7 +6,7 @@ if request.forbidden then return end
 
 local model_name, id = request.path_segments[1], request.path_segments[2]
 local model = models[model_name]
-local fields, body, store = content.read_document(id)
+local fields, body, store = contentdb.read_document(id)
 
 return {
   headers = {

@@ -8,7 +8,7 @@ local model_name = request.path_segments[1]
 
 local documents = {}
 
-content.walk_documents(nil,
+contentdb.walk_documents(nil,
   function (file_uuid, fields, body, store)
     if fields.model ~= model_name then return end
 
