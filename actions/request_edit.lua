@@ -12,8 +12,8 @@ return {
   headers = {
     ["content-type"] = "text/html"
   },
-  body = render(torchbear.settings.theme .. "/chunks/model_form.html", {
-    SITENAME = torchbear.settings.sitename,
+  body = render(settings.theme .. "/chunks/model_form.html", {
+    SITENAME = settings.sitename,
     TITLE = "Edit " .. model_name:capitalize() .. " " .. id,
     model_name = model_name,
     model = model,
