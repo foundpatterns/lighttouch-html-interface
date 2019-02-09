@@ -29,7 +29,7 @@ if not user or not pwd then
 end
 
 _G.auth_tokens = {
-  realm = torchbear.settings.sitename or ("Lighttouch App " .. generate()),
+  realm = settings.sitename or ("Lighttouch App " .. generate()),
   user = user,
   pwd = pwd,
   cred = to_base64(user .. ":" .. pwd)
