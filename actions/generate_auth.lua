@@ -14,8 +14,8 @@ local function generate (length)
   return str
 end
 
-local user = torchbear.settings.user
-local pwd = torchbear.settings.password
+local user = settings.user
+local pwd = settings.password
 
 if not user or not pwd then
   log.warn("No user or password specified in settings.")
