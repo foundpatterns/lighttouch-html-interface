@@ -17,7 +17,7 @@ return {
     TITLE = "Edit " .. model_name:capitalize() .. " " .. id,
     model_name = model_name,
     model = model,
-
+    editing = true,
     id = id,
     fields = fields,
     body = body,
